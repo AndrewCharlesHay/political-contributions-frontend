@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'hello',
-  templateUrl: './hello.html',
-  styles: [`h1 { font-family: Lato; }`],
+  selector: 'map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.sass'],
 })
 export class MapComponent implements OnChanges, OnInit {
   @Input()
@@ -19,24 +19,23 @@ export class MapComponent implements OnChanges, OnInit {
     console.log('load');
   }
   ngOnChanges(changes: SimpleChanges) {
-    const change = JSON.parse(JSON.stringify(changes.ids));
-    change.currentValue.forEach((data) => {
-      console.log('hi');
+    const change = JSON.parse(JSON.stringify(changes["ids"]));
+    change.currentValue.forEach(() => {
       // #518a38
       //  #e2e2e2 unfill
     });
   }
   mouseEnter(id: string) {
-    const element = document.getElementById(id)
+    const element: HTMLElement | null = document.getElementById(id)
     if(element){
-      element.style['stroke-width'] = '1.970631';
+      element.style.setProperty('stroke-width', '1.970631');
     }
-    console.log(id);
+    
   }
   mouseLeave(id: string) {
-    const element = document.getElementById(id)
+    const element: HTMLElement | null = document.getElementById(id)
     if(element){
-      element.style['stroke-width'] = '0.970631';
+      element.style.setProperty('stroke-width', '0.970631');
     }
   }
 }
