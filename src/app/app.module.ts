@@ -8,13 +8,15 @@ import { MapComponent } from './map/map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CanidateComponent } from './canidate/canidate.component';
 import { CanidateListComponent } from './canidate-list/canidate-list.component';
+import { StateTitleComponent } from './state-title/state-title.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     CanidateComponent,
-    CanidateListComponent
+    CanidateListComponent,
+    StateTitleComponent
   ],
   imports: [
     BrowserModule,
