@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MapComponent } from './map.component';
+import { MapComponent, getPartyColor } from './map.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -21,3 +20,9 @@ describe('MapComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+describe('getPartyColor', () => {
+  it('should pass red for Republicans', () => {
+    expect(getPartyColor({})).toEqual("black")
+  })
+})
