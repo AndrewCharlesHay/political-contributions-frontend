@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-canidate',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./canidate.component.sass']
 })
 export class CanidateComponent {
-
+  @Input() canidate: string | undefined
 }

@@ -1,3 +1,5 @@
+import { StateShort } from "./states";
+
 export interface Office {
     name: string;
     divisionId: string;
@@ -21,7 +23,7 @@ interface Address {
     line2: string;
     line3: string;
     city: string;
-    state: string;
+    state: StateShort;
     zip: string;
 }
 
