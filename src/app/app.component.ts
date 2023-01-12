@@ -7,18 +7,14 @@ import { CurrentStateService } from './services/current-state.service';
 import { StateColorService } from './services/state-color.service';
 
 export const getPartyColor = (data: any): Color => {
-  if(instanceOfCivicInfo(data)) {
-    const party = data.officials[0].party;
-    if(party === 'Democratic Party' || party === 'Democratic-Farmer-Labor Party') {
-      return "blue";
-    }
-    if(party === 'Republican Party') {
-      return "red";
-    }
-    return "yellow";
+  const party = data.officials[0].party;
+  if(party === 'Democratic Party' || party === 'Democratic-Farmer-Labor Party') {
+    return "blue";
   }
-  console.error("Data object is misconfigured and doesn't match Civic Info format");
-  return "black";
+  if(party === 'Republican Party') {
+    return "red";
+  }
+  return "yellow";
 }
 
 const getURL = (state: StateShort): URL => {
@@ -41,6 +37,7 @@ const headers = new HttpHeaders().set('Content-Type', 'application/json');
 })
 export class AppComponent {
   state: StateShort | null = null
+  canidates = "joe biden"
   constructor(
     private http: HttpClient,
     private stateColorService: StateColorService,
@@ -52,12 +49,14 @@ export class AppComponent {
         this.state = state as StateShort
         const url = getURL(this.state).toString();
         this.http.get(url, { headers }).subscribe((data) => {
-          const color = getPartyColor(data);
-          const stateColor: StateColor = {
-            state: this.state,
-            color: color
+          if(instanceOfCivicInfo(data)) {
+            const color = getPartyColor(data);
+            const stateColor: StateColor = {
+              state: this.state,
+              color: color
+            }
+            this.stateColorService.nextColor(stateColor);
           }
-          this.stateColorService.nextColor(stateColor);
         })
       }
       console.error("State not found")

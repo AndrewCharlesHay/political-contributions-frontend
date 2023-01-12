@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { defaultOffical, Official } from '../interfaces/offices';
 
 @Component({
   selector: 'app-canidate-list',
@@ -6,7 +7,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./canidate-list.component.sass'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class CanidateListComponent {
-  canidateName = 'Joe Biden';
-  
+  @Input() canidates: Official[] | undefined = [defaultOffical]
+  canidateName = this.canidates?.length ? this.canidates[0].name : defaultOffical.name;
 }
